@@ -41,6 +41,33 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
         $ENV{amethyst_src}/AmethystAPI/lib/fmt.lib
 )
 
+link_directories("{PROJECT}")
+
+# Link Rust library
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/crate_out/mineai.lib
+)
+
+# Link Torch libraries
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/torch.lib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/torch_cpu.lib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/asmjit.lib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/c10.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/clog.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/cpuinfo.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/dnnl.lib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/fbgemm.lib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/fbjni.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/kineto.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/libprotobuf.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/libprotobuf-lite.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/libprotoc.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/pthreadpool.lib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/pytorch_jni.lib
+        # ${CMAKE_CURRENT_SOURCE_DIR}/libtorch/XNNPACK.lib
+)
+
 # Enable multi processor compilation for C++, to make it go brrrrrr
 target_compile_options(${PROJECT_NAME} PRIVATE
         $<$<COMPILE_LANGUAGE:CXX>:/MP>

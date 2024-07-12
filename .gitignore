@@ -1,1 +1,5 @@
 build/
+out/
+crate/target
+crate/.idea
+crate/Cargo.lock
