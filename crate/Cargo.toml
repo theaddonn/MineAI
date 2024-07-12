@@ -1,0 +1,24 @@
+[package]
+name = "mineai"
+version = "0.1.0"
+authors = ["Adrian8115"]
+edition = "2021"
+
+[lib]
+crate-type = ["dylib", "staticlib"]
+
+[unstable]
+build-std = ["std"]
+
+[dependencies]
+rust-bert = { version = "0.22", features = ["download-libtorch"] }
+tch = { version = "^0.14.0" }
+
+cxx = "1.0"
+
+[profile.release]
+debug = "none"
+lto = true
+opt-level = "s"
+strip = "debuginfo"
+
